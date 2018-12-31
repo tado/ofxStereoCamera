@@ -64,11 +64,11 @@ public:
 	void draw(int x, int y, int w, int h)
 	{
 		ofPushStyle();
-		glPushMatrix();
+		ofPushMatrix();
 		
 		ofSetColor(255, 255);
 
-		glTranslatef(x, y, 0);
+		ofTranslate(x, y, 0);
 
 		if (output == ofxStereoCameraOutputMode::SIDE_BY_SIDE)
 		{
@@ -161,7 +161,7 @@ public:
 		ofClear(c);
 
 		ofPushView();
-		glPushMatrix();
+		ofPushMatrix();
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -186,7 +186,7 @@ public:
 
 	void endLeft()
 	{
-		glPopMatrix();
+		ofPopMatrix();
 		ofPopView();
 
 		left_fbo.end();
@@ -200,7 +200,7 @@ public:
 		ofClear(c);
 
 		ofPushView();
-		glPushMatrix();
+		ofPushMatrix();
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -225,7 +225,7 @@ public:
 
 	void endRight()
 	{
-		glPopMatrix();
+		ofPopMatrix();
 		ofPopView();
 
 		right_fbo.end();
