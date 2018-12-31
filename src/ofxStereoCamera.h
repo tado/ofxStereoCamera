@@ -157,7 +157,7 @@ public:
 	{
 		left_fbo.begin();
 
-		ofFloatColor c = ofGetCurrentRenderer()->getBgColor();
+		ofFloatColor c = ofGetCurrentRenderer()->getBackgroundColor();
 		ofClear(c);
 
 		ofPushView();
@@ -173,7 +173,7 @@ public:
 		}
 		else if (view == ofxStereoCameraViewMode::TOE_IN)
 		{
-			glMultMatrixf(this->getProjectionMatrix().getPtr());
+			ofMultMatrix(this->getProjectionMatrix());
 			glRotatef(-rot, 0, 1, 0);
 			glTranslated(-eye * focus_distance, 0, 0);
 		}
@@ -181,7 +181,7 @@ public:
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
-		glMultMatrixf(this->getModelViewMatrix().getPtr());
+		ofMultMatrix(this->getModelViewMatrix());
 	}
 
 	void endLeft()
@@ -196,7 +196,7 @@ public:
 	{
 		right_fbo.begin();
 
-		ofFloatColor c = ofGetCurrentRenderer()->getBgColor();
+		ofFloatColor c = ofGetCurrentRenderer()->getBackgroundColor();
 		ofClear(c);
 
 		ofPushView();
@@ -212,7 +212,7 @@ public:
 		}
 		else if (view == ofxStereoCameraViewMode::TOE_IN)
 		{
-			glMultMatrixf(this->getProjectionMatrix().getPtr());
+			ofMultMatrix(this->getProjectionMatrix());
 			glRotatef(rot, 0, 1, 0);
 			glTranslated(eye * focus_distance, 0, 0);
 		}
@@ -220,7 +220,7 @@ public:
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
-		glMultMatrixf(this->getModelViewMatrix().getPtr());
+		ofMultMatrix(this->getModelViewMatrix());
 	}
 
 	void endRight()
