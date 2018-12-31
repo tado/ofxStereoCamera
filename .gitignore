@@ -1,2 +1,19 @@
 .DS_Store
 
+*.lastbuildstate
+*.tlog
+*.dll
+*.exp
+*.exe
+*.lib
+*.vcxproj
+*.sln
+*.db
+*.ipch
+*.filters
+*.user
+*.log
+*.res
+*.obj
+*.pdb
+example/.vs/example/v15/.suo
