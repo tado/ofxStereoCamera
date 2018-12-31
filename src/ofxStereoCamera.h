@@ -77,8 +77,8 @@ public:
 		}
 		else if (output == ofxStereoCameraOutputMode::CROSS_EYED)
 		{
-			right_fbo.draw(0 + w / 4, h/4, w / 4, h / 4);
-			left_fbo.draw(0 + w / 2, h/4, w / 4, h / 4);
+			left_fbo.draw(0 + w / 4, h/4, w / 4, h / 4);
+			right_fbo.draw(0 + w / 2, h/4, w / 4, h / 4);
 		}
 		else if (output == ofxStereoCameraOutputMode::LINE_BY_LINE)
 		{
@@ -327,7 +327,7 @@ private:
 			}
 		);
 #undef _S
-
+		
 		shader.setupShaderFromSource(GL_VERTEX_SHADER, vs);
 		shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fs);
 		shader.linkProgram();
