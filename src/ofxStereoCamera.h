@@ -36,7 +36,7 @@ public:
 		physical_focus_distance_cm(200),
 		focus_distance(200),
 		view(ofxStereoCameraViewMode::PARALLEL),
-		output(ofxStereoCameraOutputMode::ANAGLYPH),
+		output(ofxStereoCameraOutputMode::LINE_BY_LINE),
 		ofEasyCam() {}
 
 	void setup(int w, int h);

@@ -41,14 +41,16 @@ void ofxStereoCamera::draw(int x, int y, int w, int h) {
 		left_fbo.draw(0 + w / 2, 0, w / 2, h);
 	}
 	else if (output == ofxStereoCameraOutputMode::CROSS_EYED) {
-		left_fbo.draw(0 + w / 4, h / 4, w / 4, h / 4);
-		right_fbo.draw(0 + w / 2, h / 4, w / 4, h / 4);
+		left_fbo.draw(w / 4, h / 4, w / 4, h / 4);
+		right_fbo.draw(w / 2, h / 4, w / 4, h / 4);
+		ofDrawCircle(w / 4 + w / 8, h / 2 + 20, 10);
+		ofDrawCircle(w / 2 + w / 8, h / 2 + 20, 10);
 	}
-	else if (output == ofxStereoCameraOutputMode::LINE_BY_LINE)	{
+	else if (output == ofxStereoCameraOutputMode::LINE_BY_LINE) {
 		shader.begin();
 		shader.setUniformTexture("left", left_fbo.getTextureReference(), 1);
 		shader.setUniformTexture("right", right_fbo.getTextureReference(), 2);
-		
+
 		glBegin(GL_TRIANGLE_STRIP);
 
 		glTexCoord2f(0, 0);
@@ -64,10 +66,10 @@ void ofxStereoCamera::draw(int x, int y, int w, int h) {
 		glVertex2f(w, h);
 
 		glEnd();
-		
+
 		shader.end();
 	}
-	else if (output == ofxStereoCameraOutputMode::ANAGLYPH)	{
+	else if (output == ofxStereoCameraOutputMode::ANAGLYPH) {
 		ofPushStyle();
 
 		ofEnableBlendMode(OF_BLENDMODE_ADD);
@@ -89,7 +91,8 @@ void ofxStereoCamera::draw(int x, int y, int w, int h) {
 		ofSetColor(255);
 		if (frame_count > 0) {
 			left_fbo.draw(0, 0, w, h);
-		} else {
+		}
+		else {
 			right_fbo.draw(0, 0, w, h);
 		}
 	}
@@ -179,7 +182,7 @@ void ofxStereoCamera::beginRight() {
 	ofMultMatrix(this->getModelViewMatrix());
 }
 
-void ofxStereoCamera::endRight(){
+void ofxStereoCamera::endRight() {
 	ofPopMatrix();
 	ofPopView();
 

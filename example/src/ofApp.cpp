@@ -63,7 +63,7 @@ void ofApp::drawScene()
 	
 	static GLfloat distance[] = { 0.0, 0.0, 1.0 };
 	glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, distance);
-	
+
 	glPointSize(3000);
 	
 	glBegin(GL_POINTS);
