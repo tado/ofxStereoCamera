@@ -58,8 +58,9 @@ public:
 	ofTexture& getRightTexture();
 	ofFbo * getLeftFbo();
 	ofFbo * getRightFbo();
-
 	void setupShader();
+
+	void keyPressed(int key);
 
 	ofxStereoCameraViewMode::Mode view;
 	ofxStereoCameraOutputMode::Mode output;
@@ -80,9 +81,14 @@ public:
 
 	// sutter
 	int frame_count;
+	//void begin() {}
+	//void end() {}
+	ofShader shader;
 
-	void begin() {}
-	void end() {}
-
-	ofShader shader;	
+	// Quad Warp
+	glm::vec2 warpLeftTop;
+	glm::vec2 warpRightTop;
+	glm::vec2 warpLeftBottom;
+	glm::vec2 warpRightBottom;
+	int warpPoint;
 };

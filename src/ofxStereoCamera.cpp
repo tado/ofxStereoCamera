@@ -8,6 +8,12 @@ void ofxStereoCamera::setup(int w, int h) {
 	right_fbo.allocate(width, height, GL_RGB);
 
 	setupShader();
+
+	warpLeftTop = glm::vec2(0, 0);
+	warpRightTop = glm::vec2(ofGetWidth(), 0);
+	warpLeftBottom = glm::vec2(0, ofGetHeight());
+	warpRightBottom = glm::vec2(ofGetWidth(), ofGetHeight());
+	warpPoint = 0;
 }
 
 void ofxStereoCamera::update(ofRectangle viewport) {
@@ -54,16 +60,16 @@ void ofxStereoCamera::draw(int x, int y, int w, int h) {
 		glBegin(GL_TRIANGLE_STRIP);
 
 		glTexCoord2f(0, 0);
-		glVertex2f(0, 0);
+		glVertex2f(warpLeftTop.x, warpLeftTop.y);
 
 		glTexCoord2f(width, 0);
-		glVertex2f(w, 0);
+		glVertex2f(warpRightTop.x, warpRightTop.y);
 
 		glTexCoord2f(0, height);
-		glVertex2f(0, h);
+		glVertex2f(warpLeftBottom.x, warpLeftBottom.y);
 
 		glTexCoord2f(width, height);
-		glVertex2f(w, h);
+		glVertex2f(warpRightBottom.x, warpRightBottom.y);
 
 		glEnd();
 
@@ -252,3 +258,82 @@ void ofxStereoCamera::setupShader() {
 	shader.setupShaderFromSource(GL_FRAGMENT_SHADER, fs);
 	shader.linkProgram();
 };
+
+void ofxStereoCamera::keyPressed(int key) {
+	if (key == OF_KEY_LEFT) {
+		switch (warpPoint) {
+		case 0:
+			warpLeftTop.x--;
+			break;
+		case 1:
+			warpRightTop.x--;
+			break;
+		case 2:
+			warpLeftBottom.x--;
+			break;
+		case 3:
+			warpRightBottom.x--;
+			break;
+		}
+	}
+	else if (key == OF_KEY_RIGHT) {
+		switch (warpPoint) {
+		case 0:
+			warpLeftTop.x++;
+			break;
+		case 1:
+			warpRightTop.x++;
+			break;
+		case 2:
+			warpLeftBottom.x++;
+			break;
+		case 3:
+			warpRightBottom.x++;
+			break;
+		}
+	}
+	else if (key == OF_KEY_UP) {
+		switch (warpPoint) {
+		case 0:
+			warpLeftTop.y--;
+			break;
+		case 1:
+			warpRightTop.y--;
+			break;
+		case 2:
+			warpLeftBottom.y--;
+			break;
+		case 3:
+			warpRightBottom.y--;
+			break;
+		}
+	}
+	else if (key == OF_KEY_DOWN) {
+		switch (warpPoint) {
+		case 0:
+			warpLeftTop.y++;
+			break;
+		case 1:
+			warpRightTop.y++;
+			break;
+		case 2:
+			warpLeftBottom.y++;
+			break;
+		case 3:
+			warpRightBottom.y++;
+			break;
+		}
+	}
+	else if (key == 'q') {
+		warpPoint = 0;
+	}
+	else if (key == 'w') {
+		warpPoint = 1;
+	}
+	else if (key == 'e') {
+		warpPoint = 2;
+	}
+	else if (key == 'r') {
+		warpPoint = 3;
+	}
+}
