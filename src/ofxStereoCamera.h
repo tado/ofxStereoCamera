@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxXmlSettings.h"
 
 struct ofxStereoCameraViewMode
 {
@@ -59,8 +60,9 @@ public:
 	ofFbo * getLeftFbo();
 	ofFbo * getRightFbo();
 	void setupShader();
-
 	void keyPressed(int key);
+	void loadWarp();
+	void saveWarp();
 
 	ofxStereoCameraViewMode::Mode view;
 	ofxStereoCameraOutputMode::Mode output;
@@ -91,4 +93,5 @@ public:
 	glm::vec2 warpLeftBottom;
 	glm::vec2 warpRightBottom;
 	int warpPoint;
+	ofxXmlSettings xml;
 };
