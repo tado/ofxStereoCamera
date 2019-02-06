@@ -19,7 +19,8 @@ struct ofxStereoCameraOutputMode
 		CROSS_EYED,
 		LINE_BY_LINE,
 		SUTTER,
-		ANAGLYPH
+		ANAGLYPH,
+		NO_STEREO
 	};
 };
 

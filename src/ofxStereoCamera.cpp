@@ -96,6 +96,9 @@ void ofxStereoCamera::draw(int x, int y, int w, int h) {
 			right_fbo.draw(0, 0, w, h);
 		}
 	}
+	else if (output == ofxStereoCameraOutputMode::NO_STEREO) {
+		left_fbo.draw(0, 0);
+	}
 
 	ofPopMatrix();
 	ofPopStyle();

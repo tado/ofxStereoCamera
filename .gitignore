@@ -17,3 +17,8 @@
 *.obj
 *.pdb
 example/.vs/example/v15/.suo
+example-box/.vs/example-box/v15/.suo
+*.iobj
+*.ipdb
+*.db-shm
+*.db-wal
