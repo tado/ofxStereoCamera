@@ -3,17 +3,10 @@
 void ofxStereoCamera::setup(int w, int h) {
 	width = w;
 	height = h;
-
 	left_fbo.allocate(width, height, GL_RGB);
 	right_fbo.allocate(width, height, GL_RGB);
-
 	setupShader();
-
-	warpLeftTop = glm::vec2(0, 0);
-	warpRightTop = glm::vec2(ofGetWidth(), 0);
-	warpLeftBottom = glm::vec2(0, ofGetHeight());
-	warpRightBottom = glm::vec2(ofGetWidth(), ofGetHeight());
-	warpPoint = 0;
+	resetWarp();
 	loadWarp();
 }
 
@@ -261,7 +254,7 @@ void ofxStereoCamera::setupShader() {
 }
 
 void ofxStereoCamera::loadWarp() {
-	xml.loadFile("mySettings.xml");
+	xml.loadFile("warpSettings.xml");
 	warpLeftTop = glm::vec2(xml.getValue("warp::lefttop::x", 0), xml.getValue("warp::lefttop::y", 0));
 	warpRightTop = glm::vec2(xml.getValue("warp::righttop::x", ofGetWidth()), xml.getValue("warp::righttop::y", 0));
 	warpLeftBottom = glm::vec2(xml.getValue("warp::leftbottom::x", 0), xml.getValue("warp::leftbottom::y", ofGetHeight()));
@@ -277,7 +270,15 @@ void ofxStereoCamera::saveWarp() {
 	xml.setValue("warp::leftbottom::y", warpLeftBottom.y);
 	xml.setValue("warp::rightbottom::x", warpRightBottom.x);
 	xml.setValue("warp::leftbottom::y", warpRightBottom.y);
-	xml.saveFile("mySettings.xml");
+	xml.saveFile("warpSettings.xml");
+}
+
+void ofxStereoCamera::resetWarp() {
+	warpLeftTop = glm::vec2(0, 0);
+	warpRightTop = glm::vec2(ofGetWidth(), 0);
+	warpLeftBottom = glm::vec2(0, ofGetHeight());
+	warpRightBottom = glm::vec2(ofGetWidth(), ofGetHeight());
+	warpPoint = 0;
 }
 
 void ofxStereoCamera::keyPressed(int key) {
@@ -359,5 +360,8 @@ void ofxStereoCamera::keyPressed(int key) {
 	}
 	else if (key == 's') {
 		saveWarp();
+	}
+	else if (key == 'a') {
+		resetWarp();
 	}
 }

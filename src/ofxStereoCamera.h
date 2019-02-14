@@ -63,6 +63,7 @@ public:
 	void keyPressed(int key);
 	void loadWarp();
 	void saveWarp();
+	void resetWarp();
 
 	ofxStereoCameraViewMode::Mode view;
 	ofxStereoCameraOutputMode::Mode output;
